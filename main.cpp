@@ -38,23 +38,23 @@ int main() {
 
 	int key = 0, x = 0, y = 1;
 	while (1) {
-		//key = 0, x = 0, y = 1;
 		cursor(0);
 		system("cls");
 		
 		ps->ShowMenu();
-		
+
 		key = _getch();
 
-		if (key == 224) {
+		/*if (key == 224) {
 			key = _getch();
-		}
+		}*/
 		if (key == UP) {
 			y--;
 			if (y < 1)
 				y = 1;
 			gotoxy(x, y);
 			cout << "▶";
+			key = _getch();
 		}
 		else if (key == DOWN) {
 			y++;
@@ -62,8 +62,9 @@ int main() {
 				y = 4;
 			gotoxy(x, y);
 			cout << "▶";
+			key = _getch();
 		}
-		else if (key == ENTER) {
+		if (key == ENTER) {
 			if (y == 1) {		//사러왔다
 				key = 0, x = 0, y = 2;
 				while (1) {		
@@ -76,15 +77,16 @@ int main() {
 
 					key = _getch();
 
-					if (key == 224) {
+					/*if (key == 224) {
 						key = _getch();
-					}
+					}*/
 					if (key == UP) {
 						y--;
 						if (y < 2)
 							y = 2;
 						gotoxy(x, y);
 						cout << "▶";
+						key = _getch();
 					}
 					else if (key == DOWN) {
 						y++;
@@ -92,8 +94,12 @@ int main() {
 							y = 11;
 						gotoxy(x, y);
 						cout << "▶";
+						key = _getch();
 					}
-					else if (key == ENTER) {
+					if (key == ENTER) {
+						cursor(0);
+						system("cls");
+
 						int rm;
 						Product* p = new Product();
 						cout << "물품: " << pstr[y - 2] << endl;
@@ -101,6 +107,7 @@ int main() {
 						cin >> productNum;
 						if (pb->GetMoney() < p->GetPrice(pstr[y - 2]) * productNum) {
 							cout << "돈이 부족합니다." << endl;
+							break;
 						}
 						else {
 							cout << y << endl;
@@ -137,15 +144,16 @@ int main() {
 
 					key = _getch();
 
-					if (key == 224) {
+					/*if (key == 224) {
 						key = _getch();
-					}
+					}*/
 					if (key == UP) {
 						y--;
 						if (y < 2)
 							y = 2;
 						gotoxy(x, y);
 						cout << "▶";
+						key = _getch();
 					}
 					else if (key == DOWN) {
 						y++;
@@ -153,10 +161,14 @@ int main() {
 							y = 11;
 						gotoxy(x, y);
 						cout << "▶";
+						key = _getch();
 					}
-					else if (key == ENTER) {
+					if (key == ENTER) {
+						cursor(0);
+						system("cls");
+						pb->ShowAllProduct();
+
 						int rm;
-						const char* pn;
 						Product* p = new Product();
 						p = pb->GetProduct2(y - 2);
 						cout << "물품: " << p->GetPName() << endl;
@@ -164,6 +176,7 @@ int main() {
 						cin >> productNum;
 						if (p->GetPNum() < productNum) {
 							cout << "판매하고자 하는 물품이 부족합니다." << endl;
+							break;
 						}
 						else {
 							rm = pb->GetMoney() + p->GetPrice(p->GetPName()) * productNum;
@@ -179,6 +192,7 @@ int main() {
 			}
 			else if (y == 3) {		//물품보기
 				pb->ShowAllProduct();
+				cin.get();
 				continue;
 			}
 			else if (y == 4) {		//아무것도아니다
