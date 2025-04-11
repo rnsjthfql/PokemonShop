@@ -79,7 +79,6 @@ void ProductBuyer::ShowAllProduct()
 	cout << "==== 상품 목록 ====" << endl;
 	for (int i = 0; i < idx; i++) {
 		prd[i]->ShowProduct();
-		cout << endl;
 	}
 	cout << "===================" << endl;
 }
