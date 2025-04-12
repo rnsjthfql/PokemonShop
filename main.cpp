@@ -158,7 +158,6 @@ int main() {
 					cursor(0);
 					system("cls");
 
-					cout << "잔액: " << pb->GetMoney() << "원" << endl;
 					pb->ShowAllProduct();
 
 					key = _getch();
@@ -168,16 +167,16 @@ int main() {
 					}*/
 					if (key == UP) {
 						y--;
-						if (y < 2)
-							y = 2;
+						if (y < 1)
+							y = 1;
 						gotoxy(x, y);
 						cout << "▶";
 						key = _getch();
 					}
 					else if (key == DOWN) {
 						y++;
-						if (y > 11)
-							y = 11;
+						if (y > pb->GetIDX())
+							y = pb->GetIDX();
 						gotoxy(x, y);
 						cout << "▶";
 						key = _getch();
@@ -189,7 +188,7 @@ int main() {
 
 						int rm;
 						Product* p = new Product();
-						p = pb->GetProduct2(y - 2);
+						p = pb->GetProduct2(y - 1);
 						cout << "물품: " << p->GetPName() << endl;
 						cout << "몇 개를 판매하시겠습니까? ";
 						cin >> productNum;
