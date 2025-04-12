@@ -22,6 +22,6 @@ void ProductSeller::ShowProductMenu()
 	cout << "  벌레회피스프레이" << endl;
 	cout << "  실버스프레이" << endl;
 	cout << "  몬스터볼" << endl;
-	cout << "  수퍼볼" << endl;
+	cout << "  슈퍼볼" << endl;
 	cout << "=========================" << endl;
 }
