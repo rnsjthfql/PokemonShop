@@ -126,7 +126,6 @@ int main() {
 							break;
 						}
 						else {
-							cout << y << endl;
 							rm = pb->GetMoney() - p->GetPrice(pstr[y - 2]) * productNum;
 							if (pb->FindIDX(pstr[y-2]) == 100) {
 								p->SetPNum(productNum);
@@ -134,12 +133,16 @@ int main() {
 								p->SetPrice(pstr[y - 2]);
 								pb->SetProduct(p);
 								pb->SetMoney(rm);
+								cout << "구매하였습니다." << endl;
+								key = _getch();
 								break;
 							}
 							else {
 								p = pb->GetProduct(pstr[y - 2]);
 								p->SetPNum(productNum + p->GetPNum());
 								pb->SetProduct2(p, pb->GetIDX());
+								cout << "구매하였습니다." << endl;
+								key = _getch();
 								break;
 							}
 						}
@@ -200,6 +203,8 @@ int main() {
 							p->SetPNum(p->GetPNum() - productNum);
 							pb->SetMoney(rm);
 							pb->SetProduct2(p, pb->FindIDX(p->GetPName()));
+							cout << "판매하였습니다." << endl;
+							key = _getch();
 						}
 						break;
 					}
