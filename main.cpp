@@ -29,8 +29,23 @@ int main() {
 	int mn = 0;
 	ProductSeller* ps = new ProductSeller();
 
-	cout << "현재 가지고 있는 금액은? ";
-	cin >> mn;
+
+	while (1) {
+		cout << "현재 가지고 있는 금액은? ";
+		cin >> mn;
+
+		if (!cin) {
+			cout << "숫자를 다시 입력하세요." << endl;
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			continue;
+		}
+
+		if (mn <= 0)
+			cout << "금액이 너무 적습니다. 다시 입력하세요." << endl;
+		else
+			break;
+	}
 	ProductBuyer* pb = new ProductBuyer(mn);
 	
 	const char* pstr[10] = { "상처약","잠깨는약","기력치료제","화상치료제","기력의조각","고급상처약",
@@ -107,6 +122,7 @@ int main() {
 						cin >> productNum;
 						if (pb->GetMoney() < p->GetPrice(pstr[y - 2]) * productNum) {
 							cout << "돈이 부족합니다." << endl;
+							key = _getch();
 							break;
 						}
 						else {
@@ -176,6 +192,7 @@ int main() {
 						cin >> productNum;
 						if (p->GetPNum() < productNum) {
 							cout << "판매하고자 하는 물품이 부족합니다." << endl;
+							key = _getch();
 							break;
 						}
 						else {
@@ -191,8 +208,11 @@ int main() {
 				continue;
 			}
 			else if (y == 3) {		//물품보기
+				system("cls");
+				y = 0;
+				gotoxy(x, y);
 				pb->ShowAllProduct();
-				cin.get();
+				key = _getch();
 				continue;
 			}
 			else if (y == 4) {		//아무것도아니다
